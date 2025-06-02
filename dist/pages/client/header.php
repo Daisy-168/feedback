@@ -2,7 +2,7 @@
 session_start();
 
 if(!isset($_SESSION['user_id'])){
-  header('location:../../inedx.php?error=You have to login first');
+  header('location:../../index.php?error=You have to login first');
 }
 ?>
 
@@ -16,6 +16,9 @@ if(!isset($_SESSION['user_id'])){
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="title" content="Feedback Dashboard" />
     <meta name="author" content="Dynes Datius" />
+    
+    <!-- Add favicon link -->
+    <link rel="icon" href="../../assets/img/feedback-logo.svg" type="image/svg+xml">
     
     <!--end::Primary Meta Tags-->
     <!--begin::Fonts-->
@@ -76,7 +79,13 @@ if(!isset($_SESSION['user_id'])){
                 <i class="bi bi-list"></i>
               </a>
             </li>
-         </ul>
+            <li class="nav-item d-none d-md-block">
+              <a href="index.php" class="nav-link">
+                <img src="../../assets/img/feedback-logo.svg" alt="Feedback Logo" height="30" class="me-2">
+                Dashboard
+              </a>
+            </li>
+          </ul>
           <!--end::Start Navbar Links-->
           <!--begin::End Navbar Links-->
           <ul class="navbar-nav ms-auto">

@@ -2,7 +2,7 @@
 session_start();
 
 if(!isset($_SESSION['user_id'])){
-  header('location:../inedx.php?error=You have to login first');
+  header('location:../index.php?error=You have to login first');
 }
 ?>
 
@@ -59,6 +59,8 @@ if(!isset($_SESSION['user_id'])){
       integrity="sha256-+uGLJmmTKOqBr+2E6KDYs/NRsHxSkONXFHUL0fy2O/4="
       crossorigin="anonymous"
     />
+    <!-- Add favicon link -->
+    <link rel="icon" href="../assets/img/feedback-logo.svg" type="image/svg+xml">
   </head>
   <!--end::Head-->
   <!--begin::Body-->
@@ -76,7 +78,13 @@ if(!isset($_SESSION['user_id'])){
                 <i class="bi bi-list"></i>
               </a>
             </li>
-         </ul>
+            <li class="nav-item d-none d-md-block">
+              <a href="index.php" class="nav-link">
+                <img src="../assets/img/feedback-logo.svg" alt="Feedback Logo" height="30" class="me-2">
+                Dashboard
+              </a>
+            </li>
+          </ul>
           <!--end::Start Navbar Links-->
           <!--begin::End Navbar Links-->
           <ul class="navbar-nav ms-auto">
