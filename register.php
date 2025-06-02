@@ -6,15 +6,15 @@
     <title>Feedback | Register Page</title>
     <!--begin::Primary Meta Tags-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="author" content="ColorlibHQ" />
+    <meta name="author" content="Dynes Datius" />
     <meta
       name="description"
-      content="AdminLTE is a Free Bootstrap 5 Admin Dashboard, 30 example pages using Vanilla JS."
+      content="Feedback is a system for collecting and managing user feedback."
     />
-    <meta
-      name="keywords"
-      content="bootstrap 5, bootstrap, bootstrap 5 admin dashboard, bootstrap 5 dashboard, bootstrap 5 charts, bootstrap 5 calendar, bootstrap 5 datepicker, bootstrap 5 tables, bootstrap 5 datatable, vanilla js datatable, colorlibhq, colorlibhq dashboard, colorlibhq admin dashboard"
-    />
+    
+    <!-- Add favicon link -->
+    <link rel="icon" href="dist/assets/img/feedback-logo.svg" type="image/svg+xml">
+    
     <!--end::Primary Meta Tags-->
     <!--begin::Fonts-->
     <link
@@ -49,7 +49,8 @@
   <body class="login-page bg-body-secondary">
     <div class="login-box">
       <div class="login-logo">
-        <a href=""><b>Feed</b>back</a>
+        <img src="dist/assets/img/feedback-logo.svg" alt="Feedback Logo" height="80" class="mb-3">
+        <div><a href=""><b>Feed</b>back</a></div>
       </div>
       <!-- /.login-logo -->
       <div class="card">
@@ -147,3 +148,4 @@
   </body>
   <!--end::Body-->
 </html>
+

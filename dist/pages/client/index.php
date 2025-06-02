@@ -1,78 +1,149 @@
-      <!--Header-->
-      <?php include 'header.php' ?>
-      <!--end::Header-->
+<?php include 'header.php'; ?>
+<?php include 'sidebar.php'; ?>
 
-      <!--begin::Sidebar-->
-      <?php include 'sidebar.php' ?>
-      <!--end::Sidebar-->
-
-      <!--begin::App Main-->
-      <main class="app-main">
-        <!--begin::App Content Header-->
-        <div class="app-content-header">
-          <!--begin::Container-->
-          <div class="container-fluid">
-            <!--begin::Row-->
-            <div class="row">
-              <div class="col-sm-6"><h3 class="mb-0">Dashboard</h3></div>
-              <div class="col-sm-6">
-                <ol class="breadcrumb float-sm-end">
-                  <li class="breadcrumb-item"><a href="#">Home</a></li>
-                  <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
-                </ol>
-              </div>
-            </div>
-            <!--end::Row-->
-          </div>
-          <!--end::Container-->
+<!--begin::App Main-->
+<main class="app-main">
+  <!--begin::App Content Header-->
+  <div class="app-content-header">
+    <!--begin::Container-->
+    <div class="container-fluid">
+      <!--begin::Row-->
+      <div class="row">
+        <div class="col-sm-6"><h3 class="mb-0">Dashboard</h3></div>
+        <div class="col-sm-6">
+          <ol class="breadcrumb float-sm-end">
+            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
+          </ol>
         </div>
-        <!--end::App Content Header-->
-        <!--begin::App Content-->
-        <div class="app-content">
-          <!--begin::Container-->
-          <div class="container-fluid">
-            <!--begin::Row-->
-            <div class="row">
-              <!--begin::Col-->
-              <div class="col-lg-3 col-6">
-                <!--begin::Small Box Widget 1-->
-                <div class="small-box text-bg-primary">
-                  <div class="inner">
-                    <h3>12</h3>
-                    <p>Feedbacks</p>
-                  </div>
-                  <svg
-                    class="small-box-icon"
-                    fill="currentColor"
-                    viewBox="0 0 24 24"
-                    xmlns="http://www.w3.org/2000/svg"
-                    aria-hidden="true"
-                  >
-                    <path
-                      d="M2.25 2.25a.75.75 0 000 1.5h1.386c.17 0 .318.114.362.278l2.558 9.592a3.752 3.752 0 00-2.806 3.63c0 .414.336.75.75.75h15.75a.75.75 0 000-1.5H5.378A2.25 2.25 0 017.5 15h11.218a.75.75 0 00.674-.421 60.358 60.358 0 002.96-7.228.75.75 0 00-.525-.965A60.864 60.864 0 005.68 4.509l-.232-.867A1.875 1.875 0 003.636 2.25H2.25zM3.75 20.25a1.5 1.5 0 113 0 1.5 1.5 0 01-3 0zM16.5 20.25a1.5 1.5 0 113 0 1.5 1.5 0 01-3 0z"
-                    ></path>
-                  </svg>
-                  <a
-                    href="#"
-                    class="small-box-footer link-light link-underline-opacity-0 link-underline-opacity-50-hover"
-                  >
-                    More info <i class="bi bi-link-45deg"></i>
-                  </a>
-                </div>
-                <!--end::Small Box Widget 1-->
-              </div>
-              <!--end::Col-->
-              
+      </div>
+      <!--end::Row-->
+    </div>
+    <!--end::Container-->
+  </div>
+  <!--end::App Content Header-->
+  <!--begin::App Content-->
+  <div class="app-content">
+    <!--begin::Container-->
+    <div class="container-fluid">
+      <!--begin::Row-->
+      <div class="row">
+        <?php
+          include '../../includes/connection.php';
+          $user_id = $_SESSION['user_id'];
+          
+          // Count user's feedbacks
+          $feedback_sql = "SELECT COUNT(*) as total FROM feedbacks WHERE user_id = '$user_id'";
+          $feedback_result = mysqli_query($db, $feedback_sql);
+          $feedback_count = mysqli_fetch_assoc($feedback_result)['total'];
+          
+          // Count total categories
+          $category_sql = "SELECT COUNT(*) as total FROM categories";
+          $category_result = mysqli_query($db, $category_sql);
+          $category_count = mysqli_fetch_assoc($category_result)['total'];
+          
+          // Get latest feedback date
+          $latest_sql = "SELECT created_at FROM feedbacks WHERE user_id = '$user_id' ORDER BY created_at DESC LIMIT 1";
+          $latest_result = mysqli_query($db, $latest_sql);
+          $latest_date = mysqli_num_rows($latest_result) > 0 ? date('M d, Y', strtotime(mysqli_fetch_assoc($latest_result)['created_at'])) : 'No feedbacks yet';
+        ?>
+        <!--begin::Col-->
+        <div class="col-lg-4 col-6">
+          <!--begin::Small Box Widget 1-->
+          <div class="small-box text-bg-primary">
+            <div class="inner">
+              <h3><?php echo $feedback_count; ?></h3>
+              <p>My Feedbacks</p>
             </div>
-            <!--end::Row-->
+            <svg
+              class="small-box-icon"
+              fill="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+              aria-hidden="true"
+            >
+              <path
+                d="M2.25 2.25a.75.75 0 000 1.5h1.386c.17 0 .318.114.362.278l2.558 9.592a3.752 3.752 0 00-2.806 3.63c0 .414.336.75.75.75h15.75a.75.75 0 000-1.5H5.378A2.25 2.25 0 017.5 15h11.218a.75.75 0 00.674-.421 60.358 60.358 0 002.96-7.228.75.75 0 00-.525-.965A60.864 60.864 0 005.68 4.509l-.232-.867A1.875 1.875 0 003.636 2.25H2.25zM3.75 20.25a1.5 1.5 0 113 0 1.5 1.5 0 01-3 0zM16.5 20.25a1.5 1.5 0 113 0 1.5 1.5 0 01-3 0z"
+              ></path>
+            </svg>
+            <a
+              href="#"
+              class="small-box-footer link-light link-underline-opacity-0 link-underline-opacity-50-hover"
+            >
+              More info <i class="bi bi-link-45deg"></i>
+            </a>
           </div>
-          <!--end::Container-->
+          <!--end::Small Box Widget 1-->
         </div>
-        <!--end::App Content-->
-      </main>
-      <!--end::App Main-->
+        <!--end::Col-->
+        <!--begin::Col-->
+        <div class="col-lg-4 col-6">
+          <!--begin::Small Box Widget 2-->
+          <div class="small-box text-bg-success">
+            <div class="inner">
+              <h3><?php echo $category_count; ?></h3>
+              <p>Total Categories</p>
+            </div>
+            <svg
+              class="small-box-icon"
+              fill="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+              aria-hidden="true"
+            >
+              <path
+                d="M2.25 2.25a.75.75 0 000 1.5h1.386c.17 0 .318.114.362.278l2.558 9.592a3.752 3.752 0 00-2.806 3.63c0 .414.336.75.75.75h15.75a.75.75 0 000-1.5H5.378A2.25 2.25 0 017.5 15h11.218a.75.75 0 00.674-.421 60.358 60.358 0 002.96-7.228.75.75 0 00-.525-.965A60.864 60.864 0 005.68 4.509l-.232-.867A1.875 1.875 0 003.636 2.25H2.25zM3.75 20.25a1.5 1.5 0 113 0 1.5 1.5 0 01-3 0zM16.5 20.25a1.5 1.5 0 113 0 1.5 1.5 0 01-3 0z"
+              ></path>
+            </svg>
+            <a
+              href="#"
+              class="small-box-footer link-light link-underline-opacity-0 link-underline-opacity-50-hover"
+            >
+              More info <i class="bi bi-link-45deg"></i>
+            </a>
+          </div>
+          <!--end::Small Box Widget 2-->
+        </div>
+        <!--end::Col-->
+        <!--begin::Col-->
+        <div class="col-lg-4 col-6">
+          <!--begin::Small Box Widget 3-->
+          <div class="small-box text-bg-warning">
+            <div class="inner">
+              <h3><?php echo $latest_date; ?></h3>
+              <p>Last Feedback</p>
+            </div>
+            <svg
+              class="small-box-icon"
+              fill="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+              aria-hidden="true"
+            >
+              <path
+                d="M2.25 2.25a.75.75 0 000 1.5h1.386c.17 0 .318.114.362.278l2.558 9.592a3.752 3.752 0 00-2.806 3.63c0 .414.336.75.75.75h15.75a.75.75 0 000-1.5H5.378A2.25 2.25 0 017.5 15h11.218a.75.75 0 00.674-.421 60.358 60.358 0 002.96-7.228.75.75 0 00-.525-.965A60.864 60.864 0 005.68 4.509l-.232-.867A1.875 1.875 0 003.636 2.25H2.25zM3.75 20.25a1.5 1.5 0 113 0 1.5 1.5 0 01-3 0zM16.5 20.25a1.5 1.5 0 113 0 1.5 1.5 0 01-3 0z"
+              ></path>
+            </svg>
+            <a
+              href="#"
+              class="small-box-footer link-light link-underline-opacity-0 link-underline-opacity-50-hover"
+            >
+              More info <i class="bi bi-link-45deg"></i>
+            </a>
+          </div>
+          <!--end::Small Box Widget 3-->
+        </div>
+        <!--end::Col-->
+      </div>
+      <!--end::Row-->
+    </div>
+    <!--end::Container-->
+  </div>
+  <!--end::App Content-->
+</main>
+<!--end::App Main-->
 
-      <!--begin::Footer-->
-       <?php include 'footer.php' ?>
-      <!--end::Footer-->
+<!--begin::Footer-->
+ <?php include 'footer.php' ?>
+<!--end::Footer-->
     

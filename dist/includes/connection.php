@@ -2,7 +2,7 @@
 
 $server = 'localhost' ;
 $user  = 'root';
-$password = '';
+$password = '#Spancial2be';
 $db_name = 'feedback';
 
 //connecting to database

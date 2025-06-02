@@ -5,8 +5,8 @@
           <a href="index.php" class="brand-link">
             <!--begin::Brand Image-->
             <img
-              src="../../assets/img/AdminLTELogo.png"
-              alt="AdminLTE Logo"
+              src="../../assets/img/feedback-logo.svg"
+              alt="Feedback Logo"
               class="brand-image opacity-75 shadow"
             />
             <!--end::Brand Image-->
@@ -27,17 +27,25 @@
               role="menu"
               data-accordion="false"
             >
-              <li class="nav-item menu-open">
-                <a href="index.php" class="nav-link active">
+              <li class="nav-item">
+                <a href="index.php" class="nav-link">
                   <i class="nav-icon bi bi-speedometer"></i>
                   <p>
                     Dashboard
                   </p>
                 </a>
               </li>
-              <li class="nav-item menu-open">
+              <li class="nav-item">
+                <a href="submit-feedback.php" class="nav-link">
+                  <i class="nav-icon bi bi-chat-left-text"></i>
+                  <p>
+                    Submit Feedback
+                  </p>
+                </a>
+              </li>
+              <li class="nav-item">
                 <a href="feedbacks.php" class="nav-link">
-                  <i class="nav-icon bi bi-speedometer"></i>
+                  <i class="nav-icon bi bi-list-check"></i>
                   <p>
                     My FeedBacks
                   </p>
@@ -49,3 +57,4 @@
         </div>
         <!--end::Sidebar Wrapper-->
       </aside>
+
